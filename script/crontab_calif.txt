@@ -1,0 +1,7 @@
+# ~/reg4us/script/crontab_calif.txt
+# This crontab might work well in California.
+# This entry should run at 19:59 Mon-Fri:
+59 19 * * Mon-Fri ${HOME}/reg4us/script/night_pull_push.bash > /tmp/my_night_pull_push.bash.txt 2>&1
+# This entry should help me test cron:
+35 15 24 12 * ${HOME}/reg4us/script/night_pull_push.bash > /tmp/my_night_pull_push.bash.2.txt 2>&1
+# bye
