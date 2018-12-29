@@ -1,2 +1,52 @@
-%h1 Pages#whatif
-%p Find me in app/views/pages/whatif.html.haml
+%h1 What If GSPC Price is ...
+%p I use a scenario to describe the idea behind this page.
+
+%p What if I visit www.reg4.us on Monday night?
+
+%p
+  I should see
+  %a(href='/pages/compare') predictions
+  (Linear Regression, Logistic Regression) calculated from the Monday closing price.
+
+%p What if I want to predict the prediction values for Tuesday night?
+
+%p Obviously I cannot get those predictions because Tuesday GPSPC closing price is unknown.
+
+%p What if, however, Tuesday closing price is lower than Monday closing price?
+
+%p What if, however, Tuesday closing price is higher than Monday closing price?
+
+%p What if, however, Tuesday closing price is same as Monday closing price?
+
+%p I want to calculate predictions for each of the above scenarios.
+
+%p Why do I want those three predictions?
+
+%p
+  I want them because in some situations (usually when the market is 'quiet'),
+  I can anticipate when I should switch the direction of my sentiment.
+
+%p Usually my sentiment is bullish.
+
+%p I do, however, want to know how much of a price-change should happen before I switch to bearish.
+
+%h2
+  Current GSPC Price:
+  =render 'current_price'
+
+%p
+  %a(href='https://finance.yahoo.com/quote/^GSPC' target='x')
+    https://finance.yahoo.com/quote/^GSPC
+
+%p Some possible future prices and corresponding predictions:
+
+=render 'whatif_pred'
+
+%p Often I see a clear negative correlation between price and prediction value.
+%p As price goes up, prediction goes down.
+
+%img(src='/linr_price.png')
+%br/
+%img(src='/logr_price.png')
+%hr/
+=render 'layouts/toplinks'

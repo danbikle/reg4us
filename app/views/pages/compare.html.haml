@@ -1,2 +1,23 @@
-%h1 Pages#compare
-%p Find me in app/views/pages/compare.html.haml
+%h1 Compare
+%h2 2018 Comparison of Long Only, Linear Regression, Logistic Regression
+
+%p 2018 Aggregated Effectiveness Report:
+=render 'agg_effectiveness'
+
+%br/
+%img(src='/linr1.png')
+
+%br/
+%img(src='/logr1.png')
+
+%br/
+%img(src='/linlog.png')
+
+%br/
+%img(src='/rgb.png')
+
+%p Detailed Effectiveness Report:
+=render 'detailed_effectiveness'
+
+%hr/
+=render 'layouts/toplinks'
