@@ -1,0 +1,119 @@
+tdd_manual.txt
+
+This file should list a set of manual tests which should help me develop my app.
+
+My app should be called reg4.us
+
+reg4.us should predict up or down action of SP500 daily closing prices.
+
+I should be able to operate my reg4.us manually.
+
+I should be able to operate my reg4.us automatically using cron.
+
+I should develop reg4.us on Ubuntu 16.04 running in a virtualbox appliance.
+
+I should get my appliance from this URL:
+https://drive.google.com/file/d/10p1W7kqzxE69jODhUzcb-qi-osN4htO-
+
+The above URL should give me a file called ub16_2018_0206.ova
+
+I should import ub16_2018_0206.ova into virtualbox installed on my laptop.
+
+After I start ub16_2018_0206 I should login as ann with password: "a".
+
+I should use this shell command to create an account named reg4us:
+
+sudo useradd -m -s /bin/bash -G sudo reg4us
+
+I should use reg4us as the development account.
+
+I should install Anaconda3-4.2.0-Linux-x86_64.sh
+
+I should run shell command:
+  mv ~reg4us/anaconda3/bin/curl ~reg4us/anaconda3/bin/curl_ana
+
+I should install rbenv from github.com
+
+I should install Ruby 2.5.3 from rbenv.
+
+I should install Rails 5.2.2 using the gem command.
+
+I should clone the reg4us repo:
+https://github.com/danbikle/reg4us
+
+The reg4us repo should have a folder named script containing a variety of Bash and Python scripts.
+
+I should start the reg4us webserver on my laptop using ~/reg4us/script/railss.bash
+
+The URL for that webserver should be: http://localhost:4742
+
+I should install heroku software from this URL:
+https://cli-assets.heroku.com/heroku-cli/channels/stable/heroku-cli-linux-x64.tar.gz
+
+I should create an account on heroku.com
+
+I should login to heroku.com with the heroku shell command.
+
+I should deploy reg4.us to Heroku as a Rails app.
+
+reg4.us should be visible from this URL: reg4.herokuapp.com
+
+The URL, https://tkrprice.herokuapp.com/static/gspc.csv, should serve the most recent GSPC price and price history.
+
+The script ~/reg4us/script/curlprices.bash should copy prices to ~/reg4us/public/csv/gspc2.csv
+
+The script ~/reg4us/script/whatif.bash:
+  - should call curlprices.bash
+  - should generate whatif predictions and copy them to ~/reg4us/public/csv/whatif.csv
+  - should plot predictions vs tomorrow's price
+  - should plot logistic regression predictions vs linear regression predictions
+  - should generate output for these routes:
+  - http://localhost:4742/pages/whatif
+  - https://reg4.herokuapp.com/pages/whatif
+
+The script ~/reg4us/script/night.bash:
+  - should call curlprices.bash
+  - should call whatif.bash
+  - should report effectiveness for the current year
+  - should generate output for these routes:
+  - http://localhost:4742/pages/compare
+  - https://reg4.herokuapp.com/pages/compare
+  - At the end of the above pages I should see the most recent prediction.  
+
+The script ~/reg4us/script/backtest.bash:
+  - should call curlprices.bash
+  - should call genf.py to compute features from the prices
+  - should generate predictions for all days going back to year 2000
+  - should call night.bash
+  - The public should see backtest visualizations at this URL:
+  - https://reg4.herokuapp.com/pages/backtests
+
+The script ~/reg4us/script/genf.py:
+  - should be called from backtest.bash, night.bash and whatif.bash
+  - should generate feat.csv from gspc2.csv
+  - feat.csv should contain slopes of moving averages as ML features
+  - Specific ML features should be determined at run-time
+  
+The script ~/reg4us/script/learn_tst_rpt.py:
+  - should not hard-code values for feat_l
+  - should fill feat_l by observing structure of feat.csv
+  - should learn from observations in ~/reg4us/public/csv/feat.csv
+  - should test its learned models on one year of data
+  - should report effectiveness of the models
+  - the two algorithms should be Linear Regression and Logistic Regression
+  - should write predictions to ~/reg4us/public/csv/reg4.csv
+  - should generate Effectiveness Visualizations for:
+    - Long Only
+    - Logistic Regression
+    - Linear   Regression
+  
+The file ~/reg4us/script/crontab_calif.txt:
+  - should contain cron syntax to automate the calling of night.bash
+
+The script ~/reg4us/script/night_pull_push.bash:
+  - should be called from cron
+  - should git pull, run night.bash, git commit, git push
+
+The script ~/reg4us/test/system/browse_links_test.rb:
+  - should visit a variety of links
+  
