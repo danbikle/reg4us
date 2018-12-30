@@ -8,9 +8,21 @@
 require "application_system_test_case"
 
 class BrowseLinks1sTest < ApplicationSystemTestCase
-  test "visiting the index" do
-    visit pages_about_url
-  
+  test "browse links" do
+    visit '/pages/about'
+    sleep 1
+    visit '/pages/backtests'
+    sleep 1
+    visit '/pages/blog'
+    sleep 1
+    visit '/pages/compare'
+    sleep 1
+    visit '/pages/contact'
+    sleep 1
+    visit '/pages/whatif'
+    sleep 1
+    visit '/'  
+    sleep 1
     assert_selector "h1", text: "Regression For Us"
   end
 end
