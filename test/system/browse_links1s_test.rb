@@ -11,6 +11,6 @@ class BrowseLinks1sTest < ApplicationSystemTestCase
   test "visiting the index" do
     visit pages_about_url
   
-    assert_selector "h1", text: "Pages#about"
+    assert_selector "h1", text: "Regression For Us"
   end
 end
